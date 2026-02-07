@@ -6,22 +6,22 @@ import ScrollReveal from "./ScrollReveal";
 import Lightbox from "./Lightbox";
 
 const galleryItems = [
-  { src: "/photos/IMG_4128.JPG", alt: "Herringbone tile shower installation in Monmouth County NJ", category: "bathroom", label: "Custom Herringbone Shower", wide: true },
+  { src: "/photos/IMG_4963.JPG", alt: "Bathroom shower tile installation", category: "bathroom", label: "Shower Installation", wide: true },
+  { src: "/photos/IMG_4342.JPG", alt: "Kitchen tile and stone installation", category: "kitchen", label: "Kitchen Renovation" },
+  { src: "/photos/IMG_5430.JPG", alt: "Hexagonal wall tile installation", category: "tile", label: "Hex Wall Tile" },
+  { src: "/photos/IMG_4128.JPG", alt: "Herringbone tile shower installation in Monmouth County NJ", category: "bathroom", label: "Custom Herringbone Shower" },
   { src: "/photos/IMG_5086.JPG", alt: "Hexagonal mosaic tile floor installation", category: "tile", label: "Hex Mosaic Floor" },
+  { src: "/photos/IMG_4129.JPG", alt: "Herringbone tile shower with pebble floor in NJ", category: "bathroom", label: "Herringbone & Pebble Floor", wide: true },
   { src: "/photos/IMG_4965.JPG", alt: "Modern bathroom tile installation", category: "bathroom", label: "Modern Bath Tile" },
   { src: "/photos/IMG_4087.JPG", alt: "Subway tile bathroom wall installation", category: "tile", label: "Subway Tile Wall" },
   { src: "/photos/IMG_4341.JPG", alt: "Dark marble kitchen countertop installation", category: "kitchen", label: "Dark Marble Finish" },
-  { src: "/photos/IMG_4129.JPG", alt: "Herringbone tile shower with pebble floor in NJ", category: "bathroom", label: "Herringbone & Pebble Floor", wide: true },
   { src: "/photos/IMG_4055.JPG", alt: "Outdoor patio tile installation NJ", category: "outdoor", label: "Outdoor Patio Tile" },
   { src: "/photos/IMG_5024.JPG", alt: "Penny round tile bathroom floor", category: "tile", label: "Penny Round Floor" },
   { src: "/photos/IMG_4961.JPG", alt: "Shower niche with large format tile", category: "bathroom", label: "Shower Niche Detail" },
-  { src: "/photos/IMG_4342.JPG", alt: "Kitchen tile and stone installation", category: "kitchen", label: "Kitchen Renovation" },
   { src: "/photos/IMG_5422.JPG", alt: "Diamond pattern floor tile installation", category: "tile", label: "Diamond Pattern Floor", wide: true },
-  { src: "/photos/IMG_5430.JPG", alt: "Hexagonal wall tile installation", category: "tile", label: "Hex Wall Tile" },
   { src: "/photos/IMG_4088.JPG", alt: "Bathroom renovation tile installation NJ", category: "bathroom", label: "Bath Renovation" },
   { src: "/photos/IMG_4056.JPG", alt: "Outdoor tile patio work New Jersey", category: "outdoor", label: "Patio Tilework" },
   { src: "/photos/IMG_5096.JPG", alt: "Custom tile floor pattern installation", category: "tile", label: "Custom Floor Pattern" },
-  { src: "/photos/IMG_4963.JPG", alt: "Bathroom shower tile installation", category: "bathroom", label: "Shower Installation" },
   { src: "/photos/IMG_5431.JPG", alt: "Professional tile installation NJ", category: "tile", label: "Professional Tilework" },
 ];
 
