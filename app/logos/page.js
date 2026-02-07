@@ -94,19 +94,19 @@ const logos = [
   },
   {
     number: "07",
-    style: "Herringbone Accent",
+    style: "Compact Badge (Light)",
     bg: "beige",
     svg: (
       <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
-        <g opacity="0.6" stroke="#1B3A5C" strokeWidth="1.5" fill="none">
-          <line x1="130" y1="8" x2="145" y2="22"/><line x1="145" y1="8" x2="130" y2="22"/>
-          <line x1="150" y1="8" x2="165" y2="22"/><line x1="165" y1="8" x2="150" y2="22"/>
-          <line x1="170" y1="8" x2="185" y2="22"/><line x1="185" y1="8" x2="170" y2="22"/>
+        <rect x="70" y="8" width="180" height="86" rx="8" fill="none" stroke="#1B3A5C" strokeWidth="1" opacity="0.2"/>
+        <g opacity="0.5" stroke="#1B3A5C" strokeWidth="1.5" fill="none">
+          <line x1="130" y1="16" x2="145" y2="30"/><line x1="145" y1="16" x2="130" y2="30"/>
+          <line x1="150" y1="16" x2="165" y2="30"/><line x1="165" y1="16" x2="150" y2="30"/>
+          <line x1="170" y1="16" x2="185" y2="30"/><line x1="185" y1="16" x2="170" y2="30"/>
         </g>
-        <text x="160" y="52" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="24" fill="#1B3A5C" letterSpacing="2">UNITED</text>
-        <text x="160" y="72" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="500" fontSize="13" fill="#2A5F8F" letterSpacing="8">FLOORING</text>
-        <rect x="80" y="82" width="160" height="3" rx="1.5" fill="#E8DFD0"/>
-        <text x="160" y="100" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="7" fill="#9CA3AF" letterSpacing="2">EST. NEW JERSEY</text>
+        <text x="160" y="56" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="20" fill="#1B3A5C" letterSpacing="3">UNITED</text>
+        <text x="160" y="74" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="11" fill="#2A5F8F" letterSpacing="6">FLOORING</text>
+        <text x="160" y="90" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="6" fill="#9CA3AF" letterSpacing="2">LICENSED &amp; INSURED &bull; NJ</text>
       </svg>
     ),
   },
@@ -384,6 +384,157 @@ const logos = [
       </svg>
     ),
   },
+  // --- 7M Variations ---
+  {
+    number: "25",
+    style: "7M — Compact Badge Dark",
+    bg: "dark",
+    svg: (
+      <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <rect x="70" y="8" width="180" height="86" rx="8" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1"/>
+        <g opacity="0.35" stroke="#4A90C4" strokeWidth="1.5" fill="none">
+          <line x1="130" y1="16" x2="145" y2="30"/><line x1="145" y1="16" x2="130" y2="30"/>
+          <line x1="150" y1="16" x2="165" y2="30"/><line x1="165" y1="16" x2="150" y2="30"/>
+          <line x1="170" y1="16" x2="185" y2="30"/><line x1="185" y1="16" x2="170" y2="30"/>
+        </g>
+        <text x="160" y="56" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="20" fill="#FFFFFF" letterSpacing="3">UNITED</text>
+        <text x="160" y="74" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="11" fill="#4A90C4" letterSpacing="6">FLOORING</text>
+        <text x="160" y="90" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="6" fill="rgba(255,255,255,0.25)" letterSpacing="2">LICENSED &amp; INSURED &bull; NJ</text>
+      </svg>
+    ),
+  },
+  {
+    number: "26",
+    style: "7M — Tile & Stone Badge",
+    bg: "beige",
+    svg: (
+      <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <rect x="70" y="8" width="180" height="86" rx="8" fill="none" stroke="#1B3A5C" strokeWidth="1" opacity="0.2"/>
+        <g opacity="0.5" stroke="#1B3A5C" strokeWidth="1.5" fill="none">
+          <line x1="130" y1="16" x2="145" y2="30"/><line x1="145" y1="16" x2="130" y2="30"/>
+          <line x1="150" y1="16" x2="165" y2="30"/><line x1="165" y1="16" x2="150" y2="30"/>
+          <line x1="170" y1="16" x2="185" y2="30"/><line x1="185" y1="16" x2="170" y2="30"/>
+        </g>
+        <text x="160" y="56" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="20" fill="#1B3A5C" letterSpacing="3">UNITED</text>
+        <text x="160" y="74" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="10" fill="#2A5F8F" letterSpacing="5">TILE &amp; STONE</text>
+        <text x="160" y="90" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="6" fill="#9CA3AF" letterSpacing="2">LICENSED &amp; INSURED &bull; NJ</text>
+      </svg>
+    ),
+  },
+  {
+    number: "27",
+    style: "7M — Clean White Box",
+    bg: "white",
+    svg: (
+      <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <rect x="70" y="8" width="180" height="86" rx="4" fill="#F5F0E8"/>
+        <g opacity="0.5" stroke="#1B3A5C" strokeWidth="1.5" fill="none">
+          <line x1="130" y1="16" x2="145" y2="30"/><line x1="145" y1="16" x2="130" y2="30"/>
+          <line x1="150" y1="16" x2="165" y2="30"/><line x1="165" y1="16" x2="150" y2="30"/>
+          <line x1="170" y1="16" x2="185" y2="30"/><line x1="185" y1="16" x2="170" y2="30"/>
+        </g>
+        <text x="160" y="56" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="20" fill="#1B3A5C" letterSpacing="3">UNITED</text>
+        <text x="160" y="74" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="11" fill="#2A5F8F" letterSpacing="6">FLOORING</text>
+        <text x="160" y="90" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="6" fill="#9CA3AF" letterSpacing="2">PREMIUM INSTALLATION &bull; NJ</text>
+      </svg>
+    ),
+  },
+  {
+    number: "28",
+    style: "7M — Badge + Divider",
+    bg: "white",
+    svg: (
+      <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <rect x="75" y="6" width="170" height="106" rx="10" fill="none" stroke="#1B3A5C" strokeWidth="1.5"/>
+        <g opacity="0.4" stroke="#1B3A5C" strokeWidth="1.2" fill="none">
+          <line x1="140" y1="14" x2="150" y2="24"/><line x1="150" y1="14" x2="140" y2="24"/>
+          <line x1="153" y1="14" x2="163" y2="24"/><line x1="163" y1="14" x2="153" y2="24"/>
+          <line x1="166" y1="14" x2="176" y2="24"/><line x1="176" y1="14" x2="166" y2="24"/>
+        </g>
+        <line x1="95" y1="30" x2="225" y2="30" stroke="#E8DFD0" strokeWidth="1"/>
+        <text x="160" y="54" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="22" fill="#1B3A5C" letterSpacing="3">UNITED</text>
+        <text x="160" y="74" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="12" fill="#2A5F8F" letterSpacing="7">FLOORING</text>
+        <line x1="95" y1="84" x2="225" y2="84" stroke="#E8DFD0" strokeWidth="1"/>
+        <g opacity="0.4" stroke="#1B3A5C" strokeWidth="1.2" fill="none">
+          <line x1="140" y1="90" x2="150" y2="100"/><line x1="150" y1="90" x2="140" y2="100"/>
+          <line x1="153" y1="90" x2="163" y2="100"/><line x1="163" y1="90" x2="153" y2="100"/>
+          <line x1="166" y1="90" x2="176" y2="100"/><line x1="176" y1="90" x2="166" y2="100"/>
+        </g>
+      </svg>
+    ),
+  },
+  {
+    number: "29",
+    style: "7M — Wide Horizontal",
+    bg: "beige",
+    svg: (
+      <svg viewBox="0 0 320 90" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <rect x="50" y="6" width="220" height="78" rx="6" fill="none" stroke="#1B3A5C" strokeWidth="1" opacity="0.15"/>
+        <g opacity="0.45" stroke="#1B3A5C" strokeWidth="1.2" fill="none">
+          <line x1="60" y1="14" x2="70" y2="24"/><line x1="70" y1="14" x2="60" y2="24"/>
+          <line x1="74" y1="14" x2="84" y2="24"/><line x1="84" y1="14" x2="74" y2="24"/>
+          <line x1="88" y1="14" x2="98" y2="24"/><line x1="98" y1="14" x2="88" y2="24"/>
+        </g>
+        <text x="190" y="22" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="12" fill="#1B3A5C" letterSpacing="2">UNITED FLOORING</text>
+        <line x1="60" y1="34" x2="260" y2="34" stroke="#E8DFD0" strokeWidth="1"/>
+        <text x="160" y="54" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="600" fontSize="9" fill="#2A5F8F" letterSpacing="3">{"TILE \u2022 STONE \u2022 HARDWOOD \u2022 PAVERS"}</text>
+        <text x="160" y="74" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="7" fill="#9CA3AF" letterSpacing="2">MONMOUTH &amp; OCEAN COUNTY, NJ</text>
+      </svg>
+    ),
+  },
+  {
+    number: "30",
+    style: "7M — Herringbone Circle",
+    bg: "beige",
+    svg: (
+      <svg viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <circle cx="160" cy="36" r="28" fill="none" stroke="#1B3A5C" strokeWidth="1.5"/>
+        <g opacity="0.5" stroke="#1B3A5C" strokeWidth="1.5" fill="none">
+          <line x1="146" y1="28" x2="154" y2="36"/><line x1="154" y1="28" x2="146" y2="36"/>
+          <line x1="156" y1="28" x2="164" y2="36"/><line x1="164" y1="28" x2="156" y2="36"/>
+          <line x1="166" y1="28" x2="174" y2="36"/><line x1="174" y1="28" x2="166" y2="36"/>
+        </g>
+        <text x="160" y="88" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="20" fill="#1B3A5C" letterSpacing="3">UNITED</text>
+        <text x="160" y="106" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="11" fill="#2A5F8F" letterSpacing="6">FLOORING</text>
+        <text x="160" y="122" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="7" fill="#9CA3AF" letterSpacing="2">NEW JERSEY</text>
+      </svg>
+    ),
+  },
+  {
+    number: "31",
+    style: "7M — Dark Tile & Stone",
+    bg: "dark",
+    svg: (
+      <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <rect x="70" y="8" width="180" height="86" rx="8" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1"/>
+        <g opacity="0.35" stroke="#4A90C4" strokeWidth="1.5" fill="none">
+          <line x1="130" y1="16" x2="145" y2="30"/><line x1="145" y1="16" x2="130" y2="30"/>
+          <line x1="150" y1="16" x2="165" y2="30"/><line x1="165" y1="16" x2="150" y2="30"/>
+          <line x1="170" y1="16" x2="185" y2="30"/><line x1="185" y1="16" x2="170" y2="30"/>
+        </g>
+        <text x="160" y="56" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="20" fill="#FFFFFF" letterSpacing="3">UNITED</text>
+        <text x="160" y="74" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="10" fill="#4A90C4" letterSpacing="5">TILE &amp; STONE</text>
+        <text x="160" y="90" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="6" fill="rgba(255,255,255,0.25)" letterSpacing="2">LICENSED &amp; INSURED &bull; NJ</text>
+      </svg>
+    ),
+  },
+  {
+    number: "32",
+    style: "7M — Minimal Accent",
+    bg: "white",
+    svg: (
+      <svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <g opacity="0.6" stroke="#2A5F8F" strokeWidth="2" fill="none">
+          <line x1="152" y1="8" x2="160" y2="18"/><line x1="160" y1="8" x2="152" y2="18"/>
+          <line x1="160" y1="8" x2="168" y2="18"/><line x1="168" y1="8" x2="160" y2="18"/>
+        </g>
+        <text x="160" y="44" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="28" fill="#1B3A5C" letterSpacing="3">UNITED</text>
+        <text x="160" y="64" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="14" fill="#2A5F8F" letterSpacing="8">FLOORING</text>
+        <rect x="120" y="74" width="80" height="2" rx="1" fill="#E8DFD0"/>
+        <text x="160" y="92" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="500" fontSize="7" fill="#9CA3AF" letterSpacing="3">NEW JERSEY</text>
+      </svg>
+    ),
+  },
 ];
 
 export default function LogosPage() {
@@ -409,7 +560,7 @@ export default function LogosPage() {
               Logo Options
             </h2>
             <p className="text-[1.1rem] text-gray max-w-[600px] leading-[1.8] mx-auto">
-              24 unique logo concepts for review. Mix of &ldquo;United Flooring&rdquo; and &ldquo;United Tile &amp; Stone&rdquo; variations in different styles.
+              32 logo concepts for review. Mix of &ldquo;United Flooring&rdquo; and &ldquo;United Tile &amp; Stone&rdquo; variations, including 7M herringbone badge options.
             </p>
           </div>
 
