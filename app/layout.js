@@ -30,6 +30,21 @@ export const metadata = {
     type: "website",
     url: "https://unitedflooringnj.com",
     locale: "en_US",
+    images: [
+      {
+        url: "https://unitedflooringnj.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "United Flooring NJ — Premium Tile, Stone & Flooring Installation",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "United Flooring NJ | Expert Tile, Stone & Hardwood Installation",
+    description:
+      "Professional flooring installation and renovation services in Monmouth & Ocean County, NJ. Licensed & insured. Call 908-907-2998.",
+    images: ["https://unitedflooringnj.com/og-image.png"],
   },
   alternates: {
     canonical: "https://unitedflooringnj.com",

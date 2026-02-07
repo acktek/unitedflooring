@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,14 +51,13 @@ export default function Navbar() {
         <a
           href="#"
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-          className={`font-heading text-[1.4rem] font-bold tracking-[0.5px] transition-colors duration-400 ${
-            scrolled ? "text-navy" : "text-white"
-          }`}
+          className="transition-opacity duration-400"
         >
-          UNITED{" "}
-          <span className={`font-normal transition-colors duration-400 ${scrolled ? "text-blue" : "text-beige-warm"}`}>
-            FLOORING
-          </span>
+          <Logo
+            variant="inline"
+            theme={scrolled ? "light" : "dark"}
+            className="h-[36px] w-auto"
+          />
         </a>
 
         {/* Desktop + Mobile Nav Links */}

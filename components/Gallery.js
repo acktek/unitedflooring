@@ -9,14 +9,12 @@ const galleryItems = [
   { src: "/photos/IMG_4963.JPG", alt: "Bathroom shower tile installation", category: "bathroom", label: "Shower Installation", wide: true },
   { src: "/photos/IMG_4342.JPG", alt: "Kitchen tile and stone installation", category: "kitchen", label: "Kitchen Renovation" },
   { src: "/photos/IMG_5430.JPG", alt: "Hexagonal wall tile installation", category: "tile", label: "Hex Wall Tile" },
-  { src: "/photos/IMG_4128.JPG", alt: "Herringbone tile shower installation in Monmouth County NJ", category: "bathroom", label: "Custom Herringbone Shower" },
   { src: "/photos/IMG_5086.JPG", alt: "Hexagonal mosaic tile floor installation", category: "tile", label: "Hex Mosaic Floor" },
   { src: "/photos/IMG_4129.JPG", alt: "Herringbone tile shower with pebble floor in NJ", category: "bathroom", label: "Herringbone & Pebble Floor", wide: true },
   { src: "/photos/IMG_4965.JPG", alt: "Modern bathroom tile installation", category: "bathroom", label: "Modern Bath Tile" },
   { src: "/photos/IMG_4087.JPG", alt: "Subway tile bathroom wall installation", category: "tile", label: "Subway Tile Wall" },
   { src: "/photos/IMG_4341.JPG", alt: "Dark marble kitchen countertop installation", category: "kitchen", label: "Dark Marble Finish" },
   { src: "/photos/IMG_4055.JPG", alt: "Outdoor patio tile installation NJ", category: "outdoor", label: "Outdoor Patio Tile" },
-  { src: "/photos/IMG_5024.JPG", alt: "Penny round tile bathroom floor", category: "tile", label: "Penny Round Floor" },
   { src: "/photos/IMG_4961.JPG", alt: "Shower niche with large format tile", category: "bathroom", label: "Shower Niche Detail" },
   { src: "/photos/IMG_5422.JPG", alt: "Diamond pattern floor tile installation", category: "tile", label: "Diamond Pattern Floor", wide: true },
   { src: "/photos/IMG_4088.JPG", alt: "Bathroom renovation tile installation NJ", category: "bathroom", label: "Bath Renovation" },
@@ -97,11 +95,6 @@ export default function Gallery() {
                 className="object-cover transition-transform duration-600 group-hover:scale-[1.08]"
                 sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-navy/80 to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100 flex items-end p-5">
-                <span className="text-white font-heading text-[0.85rem] font-medium translate-y-2.5 transition-transform duration-400 group-hover:translate-y-0">
-                  {item.label}
-                </span>
-              </div>
             </div>
           ))}
         </div>

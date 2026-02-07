@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -7,8 +7,8 @@ export default function Footer() {
         <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-12 max-lg:grid-cols-2 max-lg:gap-9 max-md:grid-cols-1 max-md:gap-8">
           {/* Brand */}
           <div>
-            <a href="#" className="inline-block font-heading text-[1.4rem] font-bold tracking-[0.5px] text-white mb-4">
-              UNITED <span className="font-normal text-blue">FLOORING</span>
+            <a href="#" className="inline-block mb-4">
+              <Logo variant="badge" theme="dark" className="w-[180px] h-auto" />
             </a>
             <p className="text-[0.88rem] text-white/50 leading-[1.7] max-w-[300px]">
               Professional flooring installation and renovation services serving Monmouth &amp; Ocean County, NJ. Licensed and insured.
@@ -31,7 +31,6 @@ export default function Footer() {
             <a href="#about" className="block text-[0.88rem] text-white/45 mb-3 transition-colors duration-300 hover:text-white">About Us</a>
             <a href="#gallery" className="block text-[0.88rem] text-white/45 mb-3 transition-colors duration-300 hover:text-white">Our Work</a>
             <a href="#contact" className="block text-[0.88rem] text-white/45 mb-3 transition-colors duration-300 hover:text-white">Contact</a>
-            <Link href="/logos" className="block text-[0.88rem] text-white/45 mb-3 transition-colors duration-300 hover:text-white">Brand</Link>
           </div>
 
           {/* Contact */}
