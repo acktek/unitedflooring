@@ -17,22 +17,23 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "United Flooring NJ | Tile, Stone & Hardwood Installation | Monmouth & Ocean County",
+  metadataBase: new URL("https://unitedflooringnj.com"),
+  title: "United Flooring NJ | Tile, Stone & Hardwood Experts",
   description:
-    "United Flooring NJ provides expert tile, porcelain, marble, granite, stone and hardwood flooring installation in Monmouth and Ocean County. Kitchen and bathroom renovations, floor sanding and finishing. Licensed & insured. Call 908-907-2998.",
+    "Expert tile, stone and hardwood flooring installation in Monmouth & Ocean County, NJ. Kitchen and bath renovations. Licensed & insured. 908-907-2998.",
   keywords:
     "flooring installation NJ, tile installation New Jersey, bathroom remodel Monmouth County, kitchen renovation Ocean County, hardwood floor installation, marble tile, porcelain tile, granite installation, stone flooring, floor sanding, concrete pavers, West Long Branch flooring, United Flooring",
   authors: [{ name: "United Flooring NJ" }],
   openGraph: {
-    title: "United Flooring NJ | Expert Tile, Stone & Hardwood Installation",
+    title: "United Flooring NJ | Tile, Stone & Hardwood Experts",
     description:
-      "Professional flooring installation and renovation services in Monmouth & Ocean County, NJ. Tile, marble, granite, hardwood, concrete and pavers. Licensed & insured.",
+      "Expert tile, stone and hardwood flooring in Monmouth & Ocean County, NJ. Kitchen & bath renovations. Licensed & insured. 908-907-2998.",
     type: "website",
     url: "https://unitedflooringnj.com",
     locale: "en_US",
     images: [
       {
-        url: "https://unitedflooringnj.com/og-image.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "United Flooring NJ — Premium Tile, Stone & Flooring Installation",
@@ -41,10 +42,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "United Flooring NJ | Expert Tile, Stone & Hardwood Installation",
+    title: "United Flooring NJ | Tile, Stone & Hardwood Experts",
     description:
-      "Professional flooring installation and renovation services in Monmouth & Ocean County, NJ. Licensed & insured. Call 908-907-2998.",
-    images: ["https://unitedflooringnj.com/og-image.png"],
+      "Expert tile, stone and hardwood flooring in Monmouth & Ocean County, NJ. Kitchen & bath renovations. Licensed & insured.",
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://unitedflooringnj.com",

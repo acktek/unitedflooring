@@ -55,7 +55,7 @@ export default function Navbar() {
         >
           <Logo
             variant="inline"
-            theme={scrolled ? "light" : "dark"}
+            theme="light"
             className="h-[44px] w-auto"
           />
         </a>
@@ -76,9 +76,7 @@ export default function Navbar() {
               key={href}
               href={href}
               onClick={(e) => handleNavClick(e, href)}
-              className={`font-heading text-[0.85rem] font-medium tracking-[0.5px] relative transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-blue-light after:transition-[width] after:duration-300 hover:after:w-full max-md:!text-white/80 max-md:text-base ${
-                scrolled ? "text-charcoal hover:text-blue" : "text-white/85 hover:text-white"
-              }`}
+              className="font-heading text-[0.85rem] font-medium tracking-[0.5px] relative transition-colors duration-300 text-charcoal hover:text-blue after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-blue-light after:transition-[width] after:duration-300 hover:after:w-full max-md:!text-white/80 max-md:text-base"
             >
               {label}
             </a>
@@ -102,17 +100,17 @@ export default function Navbar() {
         >
           <span
             className={`block w-6 h-[2px] rounded-sm transition-all duration-300 ${
-              scrolled ? "bg-navy" : "bg-white"
+              "bg-navy"
             } ${menuOpen ? "rotate-45 translate-x-[5px] translate-y-[5px]" : ""}`}
           />
           <span
             className={`block w-6 h-[2px] rounded-sm transition-all duration-300 ${
-              scrolled ? "bg-navy" : "bg-white"
+              "bg-navy"
             } ${menuOpen ? "opacity-0" : ""}`}
           />
           <span
             className={`block w-6 h-[2px] rounded-sm transition-all duration-300 ${
-              scrolled ? "bg-navy" : "bg-white"
+              "bg-navy"
             } ${menuOpen ? "-rotate-45 translate-x-[5px] -translate-y-[5px]" : ""}`}
           />
         </button>
