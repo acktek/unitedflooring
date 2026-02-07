@@ -11,13 +11,19 @@ export default function Contact() {
     setStatus("sending");
 
     const form = e.target;
-    const data = new FormData(form);
+    const formData = new FormData(form);
 
     try {
-      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          phone: formData.get("phone"),
+          email: formData.get("email"),
+          service: formData.get("service"),
+          message: formData.get("message"),
+        }),
       });
 
       if (res.ok) {

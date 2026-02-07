@@ -96,7 +96,6 @@ export default function Gallery() {
                 fill
                 className="object-cover transition-transform duration-600 group-hover:scale-[1.08]"
                 sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                unoptimized
               />
               <div className="absolute inset-0 bg-linear-to-t from-navy/80 to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100 flex items-end p-5">
                 <span className="text-white font-heading text-[0.85rem] font-medium translate-y-2.5 transition-transform duration-400 group-hover:translate-y-0">

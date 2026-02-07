@@ -23,7 +23,6 @@ export default function About() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 90vw, 45vw"
-                unoptimized
               />
             </div>
             <div className="relative h-[200px] rounded-xl overflow-hidden">
@@ -33,7 +32,6 @@ export default function About() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 45vw, 22vw"
-                unoptimized
               />
             </div>
             <div className="relative h-[200px] rounded-xl overflow-hidden">
@@ -43,7 +41,6 @@ export default function About() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 45vw, 22vw"
-                unoptimized
               />
             </div>
           </ScrollReveal>

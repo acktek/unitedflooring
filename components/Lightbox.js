@@ -61,7 +61,6 @@ export default function Lightbox({ images, currentIndex, isOpen, onClose, onNext
           width={1200}
           height={800}
           className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
-          unoptimized
         />
       </div>
 
