@@ -56,7 +56,7 @@ export default function Navbar() {
           <Logo
             variant="inline"
             theme={scrolled ? "light" : "dark"}
-            className="h-[36px] w-auto"
+            className="h-[44px] w-auto"
           />
         </a>
 

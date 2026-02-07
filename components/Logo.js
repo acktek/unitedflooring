@@ -47,16 +47,17 @@ export default function Logo({ variant = "inline", theme = "light", className = 
   const hbOpacity = theme === "dark" ? "0.4" : "0.55";
 
   return (
-    <svg viewBox="0 0 220 36" xmlns="http://www.w3.org/2000/svg" className={className}>
-      {/* Herringbone mark */}
+    <svg viewBox="0 0 110 48" xmlns="http://www.w3.org/2000/svg" className={className}>
+      {/* Herringbone mark — centered above text */}
       <g opacity={hbOpacity} stroke={hbColor} strokeWidth="1.5" fill="none">
-        <line x1="2" y1="8" x2="10" y2="18"/><line x1="10" y1="8" x2="2" y2="18"/>
-        <line x1="13" y1="8" x2="21" y2="18"/><line x1="21" y1="8" x2="13" y2="18"/>
-        <line x1="24" y1="8" x2="32" y2="18"/><line x1="32" y1="8" x2="24" y2="18"/>
+        <line x1="30" y1="2" x2="40" y2="13"/><line x1="40" y1="2" x2="30" y2="13"/>
+        <line x1="43" y1="2" x2="53" y2="13"/><line x1="53" y1="2" x2="43" y2="13"/>
+        <line x1="56" y1="2" x2="66" y2="13"/><line x1="66" y1="2" x2="56" y2="13"/>
+        <line x1="69" y1="2" x2="79" y2="13"/><line x1="79" y1="2" x2="69" y2="13"/>
       </g>
       {/* Text */}
-      <text x="42" y="16" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="14" fill={titleColor} letterSpacing="2">UNITED</text>
-      <text x="42" y="30" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="8.5" fill={subtitleColor} letterSpacing="4">FLOORING</text>
+      <text x="55" y="30" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="14" fill={titleColor} letterSpacing="2">UNITED</text>
+      <text x="55" y="43" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="8.5" fill={subtitleColor} letterSpacing="4">FLOORING</text>
     </svg>
   );
 }

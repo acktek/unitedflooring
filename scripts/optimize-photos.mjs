@@ -29,6 +29,7 @@ async function optimize() {
 
     try {
       const buf = await sharp(filePath, { failOn: "none" })
+        .rotate() // auto-rotate based on EXIF orientation
         .resize({ width: MAX_WIDTH, withoutEnlargement: true })
         .jpeg({ quality: QUALITY, mozjpeg: true })
         .toBuffer();
