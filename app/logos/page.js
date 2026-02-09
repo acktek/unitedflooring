@@ -386,6 +386,24 @@ const logos = [
   },
   // --- 7M Variations ---
   {
+    number: "25w",
+    style: "7M — Compact Badge White",
+    bg: "white",
+    svg: (
+      <svg viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" className="max-w-[280px] w-full h-auto">
+        <rect x="70" y="8" width="180" height="86" rx="8" fill="none" stroke="#1B3A5C" strokeWidth="1" opacity="0.2"/>
+        <g opacity="0.5" stroke="#1B3A5C" strokeWidth="1.5" fill="none">
+          <line x1="130" y1="16" x2="145" y2="30"/><line x1="145" y1="16" x2="130" y2="30"/>
+          <line x1="150" y1="16" x2="165" y2="30"/><line x1="165" y1="16" x2="150" y2="30"/>
+          <line x1="170" y1="16" x2="185" y2="30"/><line x1="185" y1="16" x2="170" y2="30"/>
+        </g>
+        <text x="160" y="56" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="20" fill="#1B3A5C" letterSpacing="3">UNITED</text>
+        <text x="160" y="74" textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight="400" fontSize="11" fill="#2A5F8F" letterSpacing="6">FLOORING</text>
+        <text x="160" y="90" textAnchor="middle" fontFamily="Inter, sans-serif" fontWeight="400" fontSize="6" fill="#9CA3AF" letterSpacing="2">LICENSED &amp; INSURED &bull; NJ</text>
+      </svg>
+    ),
+  },
+  {
     number: "25",
     style: "7M — Compact Badge Dark",
     bg: "dark",
