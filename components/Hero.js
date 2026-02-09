@@ -1,9 +1,10 @@
-export default function Hero() {
+export default function Hero({ heroImage = "/photos/IMG_4963.JPG" }) {
   return (
     <section id="hero" className="relative min-h-screen flex items-center bg-linear-135 from-navy-dark via-navy to-blue overflow-hidden">
       {/* Background image overlay */}
       <div
-        className="absolute inset-0 bg-[url('/photos/IMG_4963.JPG')] bg-center bg-cover bg-no-repeat opacity-15 grayscale-[30%]"
+        className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-15 grayscale-[30%]"
+        style={{ backgroundImage: `url('${heroImage}')` }}
       />
       {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-linear-to-t from-white to-transparent" />

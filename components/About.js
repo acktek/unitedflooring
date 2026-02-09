@@ -10,7 +10,17 @@ const features = [
   "Concrete & Paver Work",
 ];
 
-export default function About() {
+const defaultAbout = [
+  { src: "/photos/IMG_4086.JPG", alt: "United Flooring bathroom tile project", slot: "large" },
+  { src: "/photos/IMG_4343.JPG", alt: "United Flooring stone installation", slot: "small-left" },
+  { src: "/photos/IMG_5088.JPG", alt: "United Flooring tile craftsmanship", slot: "small-right" },
+];
+
+export default function About({ aboutImages = defaultAbout }) {
+  const large = aboutImages.find((img) => img.slot === "large") || defaultAbout[0];
+  const smallLeft = aboutImages.find((img) => img.slot === "small-left") || defaultAbout[1];
+  const smallRight = aboutImages.find((img) => img.slot === "small-right") || defaultAbout[2];
+
   return (
     <section id="about" className="py-[100px] bg-white max-md:py-[72px] max-sm:py-[56px]">
       <div className="w-[90%] max-w-[1200px] mx-auto">
@@ -18,8 +28,8 @@ export default function About() {
           <ScrollReveal className="grid grid-cols-2 gap-4 max-md:order-[-1]">
             <div className="col-span-2 relative h-[280px] rounded-xl overflow-hidden max-md:h-[200px]">
               <Image
-                src="/photos/IMG_4086.JPG"
-                alt="United Flooring bathroom tile project"
+                src={large.src}
+                alt={large.alt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 90vw, 45vw"
@@ -27,8 +37,8 @@ export default function About() {
             </div>
             <div className="relative h-[200px] rounded-xl overflow-hidden">
               <Image
-                src="/photos/IMG_4343.JPG"
-                alt="United Flooring stone installation"
+                src={smallLeft.src}
+                alt={smallLeft.alt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 45vw, 22vw"
@@ -36,8 +46,8 @@ export default function About() {
             </div>
             <div className="relative h-[200px] rounded-xl overflow-hidden">
               <Image
-                src="/photos/IMG_5088.JPG"
-                alt="United Flooring tile craftsmanship"
+                src={smallRight.src}
+                alt={smallRight.alt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 45vw, 22vw"
