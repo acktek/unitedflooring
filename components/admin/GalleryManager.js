@@ -141,13 +141,32 @@ export default function GalleryManager({ items, onChange }) {
                   onChange={async (e) => {
                     const file = e.target.files[0];
                     if (!file) return;
-                    const formData = new FormData();
-                    formData.append("file", file);
-                    const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
-                    if (res.ok) {
-                      const result = await res.json();
-                      handleReplace(item.id, result);
-                    }
+                    try {
+                      const signRes = await fetch("/api/admin/sign-upload", { method: "POST" });
+                      if (!signRes.ok) return;
+                      const { signature, timestamp, folder, cloudName, apiKey } = await signRes.json();
+                      const formData = new FormData();
+                      formData.append("file", file);
+                      formData.append("api_key", apiKey);
+                      formData.append("timestamp", timestamp);
+                      formData.append("signature", signature);
+                      formData.append("folder", folder);
+                      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, { method: "POST", body: formData });
+                      if (res.ok) {
+                        const data = await res.json();
+                        const isVideo = data.resource_type === "video";
+                        const result = {
+                          src: data.secure_url.replace(
+                            isVideo ? "/video/upload/" : "/image/upload/",
+                            isVideo ? "/video/upload/f_auto,q_auto/" : "/image/upload/f_auto,q_auto/"
+                          ),
+                          publicId: data.public_id,
+                          type: isVideo ? "video" : "image",
+                          thumbnail: isVideo ? data.secure_url.replace("/video/upload/", "/image/upload/f_auto,q_auto/").replace(/\.[^.]+$/, ".jpg") : null,
+                        };
+                        handleReplace(item.id, result);
+                      }
+                    } catch { /* ignore */ }
                   }}
                 />
               </label>

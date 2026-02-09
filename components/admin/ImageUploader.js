@@ -11,6 +11,41 @@ const acceptMap = {
   both: "image/jpeg,image/png,image/webp,video/mp4,video/quicktime,video/webm",
 };
 
+function buildResult(data) {
+  const isVideo = data.resource_type === "video";
+
+  if (isVideo) {
+    const optimizedUrl = data.secure_url.replace(
+      "/video/upload/",
+      "/video/upload/f_auto,q_auto/"
+    );
+    const thumbnail = data.secure_url
+      .replace("/video/upload/", "/image/upload/f_auto,q_auto/")
+      .replace(/\.[^.]+$/, ".jpg");
+
+    return {
+      src: optimizedUrl,
+      publicId: data.public_id,
+      width: data.width,
+      height: data.height,
+      type: "video",
+      thumbnail,
+    };
+  }
+
+  const optimizedUrl = data.secure_url.replace(
+    "/image/upload/",
+    "/image/upload/f_auto,q_auto/"
+  );
+
+  return {
+    src: optimizedUrl,
+    publicId: data.public_id,
+    width: data.width,
+    height: data.height,
+  };
+}
+
 export default function ImageUploader({ onUpload, multiple = false, mode = "image", className = "" }) {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(0);
@@ -37,20 +72,33 @@ export default function ImageUploader({ onUpload, multiple = false, mode = "imag
   }
 
   async function uploadOne(file) {
+    // Get signed upload params from our server (tiny JSON, no file data)
+    const signRes = await fetch("/api/admin/sign-upload", { method: "POST" });
+    if (!signRes.ok) {
+      throw new Error("Authentication failed");
+    }
+    const { signature, timestamp, folder, cloudName, apiKey } = await signRes.json();
+
+    // Upload directly to Cloudinary (bypasses server body size limits)
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("api_key", apiKey);
+    formData.append("timestamp", timestamp);
+    formData.append("signature", signature);
+    formData.append("folder", folder);
 
-    const res = await fetch("/api/admin/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
+      { method: "POST", body: formData }
+    );
 
     if (!res.ok) {
-      const data = await res.json();
-      throw new Error(data.error || `Failed to upload ${file.name}`);
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `Failed to upload ${file.name}`);
     }
 
-    return res.json();
+    const data = await res.json();
+    return buildResult(data);
   }
 
   async function handleFiles(fileList) {
