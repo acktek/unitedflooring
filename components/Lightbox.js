@@ -3,7 +3,7 @@
 import { useEffect, useCallback } from "react";
 import Image from "next/image";
 
-export default function Lightbox({ images, currentIndex, isOpen, onClose, onNext, onPrev }) {
+export default function Lightbox({ items, currentIndex, isOpen, onClose, onNext, onPrev }) {
   const handleKeyDown = useCallback(
     (e) => {
       if (!isOpen) return;
@@ -24,7 +24,10 @@ export default function Lightbox({ images, currentIndex, isOpen, onClose, onNext
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  if (!isOpen || !images.length) return null;
+  if (!isOpen || !items.length) return null;
+
+  const currentItem = items[currentIndex];
+  const isVideo = currentItem?.type === "video";
 
   return (
     <div
@@ -46,29 +49,41 @@ export default function Lightbox({ images, currentIndex, isOpen, onClose, onNext
       <button
         onClick={onPrev}
         className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 rounded-full cursor-pointer transition-colors duration-300 hover:bg-white/20"
-        aria-label="Previous image"
+        aria-label="Previous"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
           <polyline points="15 18 9 12 15 6" />
         </svg>
       </button>
 
-      {/* Image */}
+      {/* Content */}
       <div className="relative max-w-[90vw] max-h-[85vh]">
-        <Image
-          src={images[currentIndex]}
-          alt="Project photo"
-          width={1200}
-          height={800}
-          className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
-        />
+        {isVideo ? (
+          <video
+            key={currentItem.src}
+            src={currentItem.src}
+            className="max-w-[90vw] max-h-[85vh] rounded-lg"
+            controls
+            autoPlay
+            playsInline
+            preload="auto"
+          />
+        ) : (
+          <Image
+            src={currentItem.src}
+            alt={currentItem.alt || "Project photo"}
+            width={1200}
+            height={800}
+            className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
+          />
+        )}
       </div>
 
       {/* Next */}
       <button
         onClick={onNext}
         className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 rounded-full cursor-pointer transition-colors duration-300 hover:bg-white/20"
-        aria-label="Next image"
+        aria-label="Next"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
           <polyline points="9 18 15 12 9 6" />

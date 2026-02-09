@@ -15,13 +15,13 @@ export async function POST(request) {
   }
 
   try {
-    const { publicId } = await request.json();
+    const { publicId, resourceType } = await request.json();
 
     if (!publicId) {
       return NextResponse.json({ error: "publicId is required" }, { status: 400 });
     }
 
-    await deleteImage(publicId);
+    await deleteImage(publicId, resourceType || "image");
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Delete failed" }, { status: 500 });

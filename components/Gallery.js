@@ -15,7 +15,12 @@ export default function Gallery({ items = defaultConfig.gallery, categories = de
     ? items
     : items.filter((item) => item.category === activeFilter);
 
-  const filteredSrcs = filtered.map((item) => item.src);
+  const filteredItems = filtered.map((item) => ({
+    src: item.src,
+    type: item.type || "image",
+    thumbnail: item.thumbnail || null,
+    alt: item.alt,
+  }));
 
   function openLightbox(index) {
     setLightboxIndex(index);
@@ -64,24 +69,33 @@ export default function Gallery({ items = defaultConfig.gallery, categories = de
               style={{ animation: "fadeIn 0.5s ease forwards" }}
             >
               <Image
-                src={item.src}
+                src={(item.type === "video" && item.thumbnail) ? item.thumbnail : item.src}
                 alt={item.alt}
                 fill
                 className="object-cover transition-transform duration-600 group-hover:scale-[1.08]"
                 sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />
+              {item.type === "video" && (
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="w-14 h-14 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                    <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6 ml-1">
+                      <polygon points="5,3 19,12 5,21" />
+                    </svg>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
 
       <Lightbox
-        images={filteredSrcs}
+        items={filteredItems}
         currentIndex={lightboxIndex}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
-        onNext={() => setLightboxIndex((prev) => (prev + 1) % filteredSrcs.length)}
-        onPrev={() => setLightboxIndex((prev) => (prev - 1 + filteredSrcs.length) % filteredSrcs.length)}
+        onNext={() => setLightboxIndex((prev) => (prev + 1) % filteredItems.length)}
+        onPrev={() => setLightboxIndex((prev) => (prev - 1 + filteredItems.length) % filteredItems.length)}
       />
     </section>
   );

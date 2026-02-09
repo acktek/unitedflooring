@@ -1,11 +1,23 @@
-export default function Hero({ heroImage = "/photos/IMG_4963.JPG" }) {
+export default function Hero({ heroImage = "/photos/IMG_4963.JPG", heroType = "image" }) {
   return (
     <section id="hero" className="relative min-h-screen flex items-center bg-linear-135 from-navy-dark via-navy to-blue overflow-hidden">
-      {/* Background image overlay */}
-      <div
-        className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-15 grayscale-[30%]"
-        style={{ backgroundImage: `url('${heroImage}')` }}
-      />
+      {/* Background overlay */}
+      {heroType === "video" ? (
+        <video
+          src={heroImage}
+          className="absolute inset-0 w-full h-full object-cover opacity-15 grayscale-[30%]"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+        />
+      ) : (
+        <div
+          className="absolute inset-0 bg-center bg-cover bg-no-repeat opacity-15 grayscale-[30%]"
+          style={{ backgroundImage: `url('${heroImage}')` }}
+        />
+      )}
       {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-linear-to-t from-white to-transparent" />
 

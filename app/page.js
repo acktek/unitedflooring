@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <>
       <Navbar />
-      <Hero heroImage={config.hero.src} />
+      <Hero heroImage={config.hero.src} heroType={config.hero.type || "image"} />
       <TrustBar />
       <Services />
       <Gallery items={config.gallery} categories={config.categories} />

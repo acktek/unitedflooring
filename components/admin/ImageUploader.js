@@ -2,20 +2,36 @@
 
 import { useState, useRef } from "react";
 
-export default function ImageUploader({ onUpload, multiple = false, className = "" }) {
+const imageTypes = ["image/jpeg", "image/png", "image/webp"];
+const videoTypes = ["video/mp4", "video/quicktime", "video/webm"];
+
+const acceptMap = {
+  image: "image/jpeg,image/png,image/webp",
+  video: "video/mp4,video/quicktime,video/webm",
+  both: "image/jpeg,image/png,image/webp,video/mp4,video/quicktime,video/webm",
+};
+
+export default function ImageUploader({ onUpload, multiple = false, mode = "image", className = "" }) {
   const [dragging, setDragging] = useState(false);
-  const [uploading, setUploading] = useState(0); // count of in-progress uploads
+  const [uploading, setUploading] = useState(0);
   const [completed, setCompleted] = useState(0);
   const [total, setTotal] = useState(0);
   const fileRef = useRef(null);
 
   function validateFile(file) {
-    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
-    if (!allowedTypes.includes(file.type)) {
-      return `${file.name}: Only JPG, PNG, and WebP allowed.`;
+    let allowed;
+    if (mode === "image") allowed = imageTypes;
+    else if (mode === "video") allowed = videoTypes;
+    else allowed = [...imageTypes, ...videoTypes];
+
+    if (!allowed.includes(file.type)) {
+      return `${file.name}: File type not allowed.`;
     }
-    if (file.size > 10 * 1024 * 1024) {
-      return `${file.name}: File too large (max 10MB).`;
+
+    const isVideo = videoTypes.includes(file.type);
+    const maxSize = isVideo ? 50 * 1024 * 1024 : 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+      return `${file.name}: File too large (max ${isVideo ? "50MB" : "10MB"}).`;
     }
     return null;
   }
@@ -41,7 +57,6 @@ export default function ImageUploader({ onUpload, multiple = false, className = 
     const files = Array.from(fileList);
     if (files.length === 0) return;
 
-    // Validate all files first
     const errors = files.map(validateFile).filter(Boolean);
     if (errors.length > 0) {
       alert(errors.join("\n"));
@@ -55,7 +70,6 @@ export default function ImageUploader({ onUpload, multiple = false, className = 
     const results = [];
     const uploadErrors = [];
 
-    // Upload files in parallel (max 3 concurrent)
     const queue = [...files];
     const workers = Array.from({ length: Math.min(3, queue.length) }, async () => {
       while (queue.length > 0) {
@@ -73,7 +87,6 @@ export default function ImageUploader({ onUpload, multiple = false, className = 
 
     await Promise.all(workers);
 
-    // Notify parent with all results at once
     if (results.length > 0) {
       onUpload(results);
     }
@@ -95,6 +108,24 @@ export default function ImageUploader({ onUpload, multiple = false, className = 
   }
 
   const isUploading = uploading > 0;
+
+  let helpText;
+  if (mode === "video") {
+    helpText = `MP4, MOV, WebM up to 50MB${multiple ? " each" : ""}`;
+  } else if (mode === "both") {
+    helpText = `Images (JPG, PNG, WebP up to 10MB) or videos (MP4, MOV, WebM up to 50MB)`;
+  } else {
+    helpText = `JPG, PNG, WebP up to 10MB${multiple ? " each" : ""}`;
+  }
+
+  let dropText;
+  if (mode === "video") {
+    dropText = multiple ? "Drop videos here or click to upload" : "Drop video here or click to upload";
+  } else if (mode === "both") {
+    dropText = multiple ? "Drop files here or click to upload" : "Drop file here or click to upload";
+  } else {
+    dropText = multiple ? "Drop images here or click to upload" : "Drop image here or click to upload";
+  }
 
   return (
     <div
@@ -126,15 +157,15 @@ export default function ImageUploader({ onUpload, multiple = false, className = 
             <line x1="12" y1="3" x2="12" y2="15" />
           </svg>
           <span className="text-sm font-medium text-gray-600">
-            {multiple ? "Drop images here or click to upload" : "Drop image here or click to upload"}
+            {dropText}
           </span>
           <span className="text-xs text-gray-400 mt-1">
-            JPG, PNG, WebP up to 10MB{multiple ? " each" : ""}
+            {helpText}
           </span>
           <input
             ref={fileRef}
             type="file"
-            accept="image/jpeg,image/png,image/webp"
+            accept={acceptMap[mode] || acceptMap.image}
             multiple={multiple}
             className="hidden"
             onChange={(e) => handleFiles(e.target.files)}

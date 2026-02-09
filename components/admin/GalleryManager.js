@@ -25,6 +25,8 @@ export default function GalleryManager({ items, onChange }) {
       category: "tile",
       label: "",
       wide: false,
+      type: result.type || "image",
+      thumbnail: result.thumbnail || null,
     }));
     onChange([...items, ...newItems]);
   }
@@ -33,7 +35,13 @@ export default function GalleryManager({ items, onChange }) {
     onChange(
       items.map((item) =>
         item.id === itemId
-          ? { ...item, src: result.src, publicId: result.publicId }
+          ? {
+              ...item,
+              src: result.src,
+              publicId: result.publicId,
+              type: result.type || "image",
+              thumbnail: result.thumbnail || null,
+            }
           : item
       )
     );
@@ -65,24 +73,30 @@ export default function GalleryManager({ items, onChange }) {
     onChange(newItems);
   }
 
+  const videoCount = items.filter((i) => i.type === "video").length;
+  const photoCount = items.length - videoCount;
+  const countText = videoCount > 0
+    ? `${photoCount} photo${photoCount !== 1 ? "s" : ""}, ${videoCount} video${videoCount !== 1 ? "s" : ""}`
+    : `${items.length} photos`;
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">Gallery Photos</h2>
-          <p className="text-sm text-gray-500">{items.length} photos</p>
+          <h2 className="text-lg font-semibold text-gray-900">Gallery Media</h2>
+          <p className="text-sm text-gray-500">{countText}</p>
         </div>
         <button
           onClick={() => setAdding(!adding)}
           className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-lg hover:bg-blue transition-colors"
         >
-          {adding ? "Cancel" : "+ Add Photo"}
+          {adding ? "Cancel" : "+ Add Media"}
         </button>
       </div>
 
       {adding && (
         <div className="mb-6">
-          <ImageUploader onUpload={handleUpload} multiple />
+          <ImageUploader onUpload={handleUpload} multiple mode="both" />
         </div>
       )}
 
@@ -92,13 +106,22 @@ export default function GalleryManager({ items, onChange }) {
             {/* Thumbnail */}
             <div className="relative w-24 h-24 rounded-lg overflow-hidden shrink-0 bg-gray-100 group">
               {item.src ? (
-                <Image
-                  src={item.src}
-                  alt={item.alt || "Gallery photo"}
-                  fill
-                  className="object-cover"
-                  sizes="96px"
-                />
+                <>
+                  <Image
+                    src={item.type === "video" ? (item.thumbnail || item.src) : item.src}
+                    alt={item.alt || "Gallery item"}
+                    fill
+                    className="object-cover"
+                    sizes="96px"
+                  />
+                  {item.type === "video" && (
+                    <div className="absolute bottom-1 right-1 w-5 h-5 bg-black/60 rounded-full flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" fill="white" className="w-3 h-3 ml-0.5">
+                        <polygon points="5,3 19,12 5,21" />
+                      </svg>
+                    </div>
+                  )}
+                </>
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-gray-400">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
@@ -111,7 +134,9 @@ export default function GalleryManager({ items, onChange }) {
                 <span className="text-white text-xs font-medium">Replace</span>
                 <input
                   type="file"
-                  accept="image/jpeg,image/png,image/webp"
+                  accept={item.type === "video"
+                    ? "video/mp4,video/quicktime,video/webm"
+                    : "image/jpeg,image/png,image/webp"}
                   className="hidden"
                   onChange={async (e) => {
                     const file = e.target.files[0];
@@ -185,6 +210,9 @@ export default function GalleryManager({ items, onChange }) {
                     {item.wide && (
                       <span className="px-2 py-0.5 bg-blue/10 text-blue text-xs rounded-full">wide</span>
                     )}
+                    {item.type === "video" && (
+                      <span className="px-2 py-0.5 bg-purple-100 text-purple-600 text-xs rounded-full">video</span>
+                    )}
                   </div>
                   <p className="text-xs text-gray-400 mt-0.5 truncate">{item.alt || "No description"}</p>
                 </div>
@@ -230,7 +258,7 @@ export default function GalleryManager({ items, onChange }) {
 
       {items.length === 0 && (
         <div className="text-center py-12 text-gray-400">
-          <p>No gallery photos yet. Click &quot;Add Photo&quot; to get started.</p>
+          <p>No gallery items yet. Click &quot;Add Media&quot; to get started.</p>
         </div>
       )}
     </div>

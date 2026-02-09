@@ -5,9 +5,15 @@ import ImageUploader from "./ImageUploader";
 
 export default function HeroManager({ hero, onChange }) {
   const [replacing, setReplacing] = useState(false);
+  const isVideo = hero.type === "video";
 
   function handleUpload(result) {
-    onChange({ src: result.src, publicId: result.publicId });
+    const upload = Array.isArray(result) ? result[0] : result;
+    onChange({
+      src: upload.src,
+      publicId: upload.publicId,
+      type: upload.type || "image",
+    });
     setReplacing(false);
   }
 
@@ -15,7 +21,7 @@ export default function HeroManager({ hero, onChange }) {
     <div>
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-gray-900">Hero Background</h2>
-        <p className="text-sm text-gray-500">This image appears as the background of the main hero section at the top of the page.</p>
+        <p className="text-sm text-gray-500">This image or video appears as the background of the main hero section at the top of the page.</p>
       </div>
 
       {/* Preview */}
@@ -24,27 +30,40 @@ export default function HeroManager({ hero, onChange }) {
           <>
             {/* Simulate how it looks on the actual site */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#122840] via-[#1B3A5C] to-[#2A5F8F]" />
-            <div
-              className="absolute inset-0 bg-center bg-cover opacity-15 grayscale-[30%]"
-              style={{ backgroundImage: `url('${hero.src}')` }}
-            />
+            {isVideo ? (
+              <video
+                src={hero.src}
+                className="absolute inset-0 w-full h-full object-cover opacity-15 grayscale-[30%]"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              <div
+                className="absolute inset-0 bg-center bg-cover opacity-15 grayscale-[30%]"
+                style={{ backgroundImage: `url('${hero.src}')` }}
+              />
+            )}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
-                <p className="text-white/80 text-sm font-medium">Current Hero Background</p>
+                <p className="text-white/80 text-sm font-medium">
+                  Current Hero Background {isVideo ? "(Video)" : "(Image)"}
+                </p>
                 <p className="text-white/40 text-xs mt-1">Shown at 15% opacity with grayscale filter</p>
               </div>
             </div>
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-            <p>No hero image set</p>
+            <p>No hero background set</p>
           </div>
         )}
       </div>
 
       {replacing ? (
         <div className="space-y-3">
-          <ImageUploader onUpload={handleUpload} />
+          <ImageUploader onUpload={handleUpload} mode="both" />
           <button
             onClick={() => setReplacing(false)}
             className="text-sm text-gray-500 hover:text-gray-700"
@@ -57,7 +76,7 @@ export default function HeroManager({ hero, onChange }) {
           onClick={() => setReplacing(true)}
           className="px-4 py-2 bg-navy text-white text-sm font-medium rounded-lg hover:bg-blue transition-colors"
         >
-          Change Hero Image
+          Change Hero Background
         </button>
       )}
     </div>
