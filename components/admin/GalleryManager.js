@@ -162,7 +162,7 @@ export default function GalleryManager({ items, onChange }) {
                           ),
                           publicId: data.public_id,
                           type: isVideo ? "video" : "image",
-                          thumbnail: isVideo ? data.secure_url.replace("/video/upload/", "/image/upload/f_auto,q_auto/").replace(/\.[^.]+$/, ".jpg") : null,
+                          thumbnail: isVideo ? data.secure_url.replace("/video/upload/", "/video/upload/f_jpg,q_auto,so_0/").replace(/\.[^.]+$/, ".jpg") : null,
                         };
                         handleReplace(item.id, result);
                       }

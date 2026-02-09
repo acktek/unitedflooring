@@ -20,7 +20,7 @@ function buildResult(data) {
       "/video/upload/f_auto,q_auto/"
     );
     const thumbnail = data.secure_url
-      .replace("/video/upload/", "/image/upload/f_auto,q_auto/")
+      .replace("/video/upload/", "/video/upload/f_jpg,q_auto,so_0/")
       .replace(/\.[^.]+$/, ".jpg");
 
     return {
