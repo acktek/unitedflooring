@@ -73,9 +73,9 @@ export default function ImageUploader({ onUpload, multiple = false, className = 
 
     await Promise.all(workers);
 
-    // Notify parent for each successful upload
-    for (const result of results) {
-      onUpload(result);
+    // Notify parent with all results at once
+    if (results.length > 0) {
+      onUpload(results);
     }
 
     if (uploadErrors.length > 0) {

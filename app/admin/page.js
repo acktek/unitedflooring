@@ -97,12 +97,23 @@ export default function AdminDashboard() {
             </div>
             <span className="font-heading text-sm font-semibold text-navy">Photo Manager</span>
           </div>
-          <button
-            onClick={handleLogout}
-            className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            Log out
-          </button>
+          <div className="flex items-center gap-4">
+            <a
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-400 hover:text-blue transition-colors flex items-center gap-1"
+            >
+              View Site
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+            </a>
+            <button
+              onClick={handleLogout}
+              className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              Log out
+            </button>
+          </div>
         </div>
       </header>
 
