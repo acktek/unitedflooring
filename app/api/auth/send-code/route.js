@@ -38,10 +38,13 @@ export async function POST(request) {
         subject: "Your Admin Login Code",
         html_body: `
           <div style="font-family: Arial, sans-serif; max-width: 460px; margin: 0 auto;">
-            <div style="background: #1B3A5C; padding: 28px 24px 24px; border-radius: 8px 8px 0 0; text-align: center;">
-              <div style="margin-bottom: 12px; font-size: 16px; letter-spacing: 6px; color: #4A90C4; opacity: 0.4;">&#708;&#709; &#708;&#709; &#708;&#709;</div>
-              <div style="font-family: 'Montserrat', Arial, sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF; letter-spacing: 3px;">UNITED</div>
-              <div style="font-family: 'Montserrat', Arial, sans-serif; font-size: 12px; font-weight: 400; color: #4A90C4; letter-spacing: 6px; margin-top: 4px;">FLOORING</div>
+            <div style="background: #FFFFFF; padding: 28px 24px 24px; border-radius: 8px 8px 0 0; text-align: center; border: 1px solid #e5e5e5; border-bottom: none;">
+              <div style="display: inline-block; border: 1px solid rgba(27,58,92,0.2); border-radius: 8px; padding: 16px 32px 14px;">
+                <div style="margin-bottom: 10px; font-size: 16px; letter-spacing: 6px; color: #1B3A5C; opacity: 0.5;">&#708;&#709; &#708;&#709; &#708;&#709;</div>
+                <div style="font-family: 'Montserrat', Arial, sans-serif; font-size: 22px; font-weight: 700; color: #1B3A5C; letter-spacing: 3px;">UNITED</div>
+                <div style="font-family: 'Montserrat', Arial, sans-serif; font-size: 12px; font-weight: 400; color: #2A5F8F; letter-spacing: 6px; margin-top: 4px;">FLOORING</div>
+                <div style="font-family: Arial, sans-serif; font-size: 9px; color: #9CA3AF; letter-spacing: 2px; margin-top: 8px;">LICENSED &amp; INSURED &#8226; NJ</div>
+              </div>
             </div>
             <div style="background: #f9f9f9; padding: 32px 24px; border: 1px solid #e5e5e5; border-top: none; border-radius: 0 0 8px 8px; text-align: center;">
               <p style="margin: 0 0 8px; font-size: 14px; color: #666;">Your login code is:</p>
