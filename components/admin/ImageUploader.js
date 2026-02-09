@@ -2,60 +2,99 @@
 
 import { useState, useRef } from "react";
 
-export default function ImageUploader({ onUpload, className = "" }) {
+export default function ImageUploader({ onUpload, multiple = false, className = "" }) {
   const [dragging, setDragging] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const [preview, setPreview] = useState(null);
+  const [uploading, setUploading] = useState(0); // count of in-progress uploads
+  const [completed, setCompleted] = useState(0);
+  const [total, setTotal] = useState(0);
   const fileRef = useRef(null);
 
-  async function handleFile(file) {
-    if (!file) return;
-
+  function validateFile(file) {
     const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
     if (!allowedTypes.includes(file.type)) {
-      alert("Only JPG, PNG, and WebP images are allowed.");
-      return;
+      return `${file.name}: Only JPG, PNG, and WebP allowed.`;
     }
     if (file.size > 10 * 1024 * 1024) {
-      alert("File too large. Maximum size is 10MB.");
+      return `${file.name}: File too large (max 10MB).`;
+    }
+    return null;
+  }
+
+  async function uploadOne(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("/api/admin/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      throw new Error(data.error || `Failed to upload ${file.name}`);
+    }
+
+    return res.json();
+  }
+
+  async function handleFiles(fileList) {
+    const files = Array.from(fileList);
+    if (files.length === 0) return;
+
+    // Validate all files first
+    const errors = files.map(validateFile).filter(Boolean);
+    if (errors.length > 0) {
+      alert(errors.join("\n"));
       return;
     }
 
-    // Show preview immediately
-    setPreview(URL.createObjectURL(file));
-    setUploading(true);
+    setTotal(files.length);
+    setCompleted(0);
+    setUploading(files.length);
 
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
+    const results = [];
+    const uploadErrors = [];
 
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Upload failed");
+    // Upload files in parallel (max 3 concurrent)
+    const queue = [...files];
+    const workers = Array.from({ length: Math.min(3, queue.length) }, async () => {
+      while (queue.length > 0) {
+        const file = queue.shift();
+        try {
+          const result = await uploadOne(file);
+          results.push(result);
+          setCompleted((c) => c + 1);
+        } catch (err) {
+          uploadErrors.push(err.message);
+          setCompleted((c) => c + 1);
+        }
       }
+    });
 
-      const result = await res.json();
+    await Promise.all(workers);
+
+    // Notify parent for each successful upload
+    for (const result of results) {
       onUpload(result);
-    } catch (err) {
-      alert(err.message || "Upload failed. Please try again.");
-    } finally {
-      setUploading(false);
-      setPreview(null);
-      if (fileRef.current) fileRef.current.value = "";
     }
+
+    if (uploadErrors.length > 0) {
+      alert(`${uploadErrors.length} upload(s) failed:\n${uploadErrors.join("\n")}`);
+    }
+
+    setUploading(0);
+    setTotal(0);
+    setCompleted(0);
+    if (fileRef.current) fileRef.current.value = "";
   }
 
   function handleDrop(e) {
     e.preventDefault();
     setDragging(false);
-    const file = e.dataTransfer.files[0];
-    handleFile(file);
+    handleFiles(e.dataTransfer.files);
   }
+
+  const isUploading = uploading > 0;
 
   return (
     <div
@@ -66,10 +105,18 @@ export default function ImageUploader({ onUpload, className = "" }) {
       onDragLeave={() => setDragging(false)}
       onDrop={handleDrop}
     >
-      {preview ? (
-        <div className="p-4 text-center">
-          <img src={preview} alt="Uploading..." className="w-20 h-20 object-cover rounded-lg mx-auto mb-2" />
-          <p className="text-sm text-gray-500">Uploading...</p>
+      {isUploading ? (
+        <div className="p-6 text-center">
+          <div className="w-8 h-8 border-2 border-navy border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+          <p className="text-sm font-medium text-gray-600">
+            Uploading {completed} of {total}...
+          </p>
+          <div className="w-48 h-1.5 bg-gray-100 rounded-full mx-auto mt-3 overflow-hidden">
+            <div
+              className="h-full bg-navy rounded-full transition-all duration-300"
+              style={{ width: `${total > 0 ? (completed / total) * 100 : 0}%` }}
+            />
+          </div>
         </div>
       ) : (
         <label className="flex flex-col items-center justify-center p-6 cursor-pointer">
@@ -79,16 +126,18 @@ export default function ImageUploader({ onUpload, className = "" }) {
             <line x1="12" y1="3" x2="12" y2="15" />
           </svg>
           <span className="text-sm font-medium text-gray-600">
-            {uploading ? "Uploading..." : "Drop image here or click to upload"}
+            {multiple ? "Drop images here or click to upload" : "Drop image here or click to upload"}
           </span>
-          <span className="text-xs text-gray-400 mt-1">JPG, PNG, WebP up to 10MB</span>
+          <span className="text-xs text-gray-400 mt-1">
+            JPG, PNG, WebP up to 10MB{multiple ? " each" : ""}
+          </span>
           <input
             ref={fileRef}
             type="file"
             accept="image/jpeg,image/png,image/webp"
+            multiple={multiple}
             className="hidden"
-            onChange={(e) => handleFile(e.target.files[0])}
-            disabled={uploading}
+            onChange={(e) => handleFiles(e.target.files)}
           />
         </label>
       )}

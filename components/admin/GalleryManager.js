@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import ImageUploader from "./ImageUploader";
 
@@ -14,10 +14,12 @@ const categoryOptions = [
 export default function GalleryManager({ items, onChange }) {
   const [adding, setAdding] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const itemsRef = useRef(items);
+  useEffect(() => { itemsRef.current = items; }, [items]);
 
   function handleUpload(result) {
     const newItem = {
-      id: `gal_${Date.now()}`,
+      id: `gal_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
       src: result.src,
       publicId: result.publicId,
       alt: "",
@@ -25,9 +27,7 @@ export default function GalleryManager({ items, onChange }) {
       label: "",
       wide: false,
     };
-    onChange([...items, newItem]);
-    setAdding(false);
-    setEditingId(newItem.id);
+    onChange([...itemsRef.current, newItem]);
   }
 
   function handleReplace(itemId, result) {
@@ -83,7 +83,7 @@ export default function GalleryManager({ items, onChange }) {
 
       {adding && (
         <div className="mb-6">
-          <ImageUploader onUpload={handleUpload} />
+          <ImageUploader onUpload={handleUpload} multiple />
         </div>
       )}
 
